@@ -1,0 +1,50 @@
+# Author settings
+name: 路莫
+title: java 开发工程师
+address: 中国, 上海
+email: amrandeder@foxmail.com
+github: lumocheung
+gavatar: /assets/img/avatar.JPG
+workHistory:
+- work1:
+  company: 
+  location: 
+  title: 
+  started: 
+  duration: 
+  description: 
+
+educationHistory:
+- education1:
+  organization: 安徽大学
+  degree: 学士
+  major: 化学工程与工艺
+  started: 2010
+  duration: (2010.9 - 2014.7)
+  description: 自学 C/C++, Java, Linux, 培训并参加过 ACM 比赛
+languages:
+- language1:
+  name: 中文
+  proficiency: Native
+- language2:
+  name: English
+  proficiency: Limit
+programmingSkills:
+- Java:
+  name: Java/Android
+  percentage: 90%
+- Bash:
+  name: Bash Shell
+  percentage: 90%
+- CPP:
+  name: C/C++
+  percentage: 70%
+- PHP:
+  name: PHP
+  percentage: 30%
+- Python:
+  name: Python
+  percentage: 30%
+- Kotlin:
+  name: Kotlin
+  percentage: 70%
