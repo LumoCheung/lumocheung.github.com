@@ -2,7 +2,7 @@
 layout: post_layout
 title: Jekyll语法高亮问题
 time: 2016年04月03日 星期天
-location: 上海
+location: 北京
 pulished: true
 excerpt_separator: "#"
 ---
