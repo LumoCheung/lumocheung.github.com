@@ -172,10 +172,11 @@ Markdown 支持有序列表和无序列表。
 要让列表看起来更漂亮，你可以把内容用固定的缩进整理好：
 
 ```code
-* Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus. 
-  Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.
-* Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse id sem consectetuer libero
-  luctus adipiscing.
+* Lorem ipsum dolor sit amet, consectetuer adipiscing elit. 
+  Aliquam hendrerit mi posuere lectus. Vestibulum enim wisi, 
+  viverra nec, fringilla in, laoreet vitae, risus.
+* Donec sit amet nisl. Aliquam semper ipsum sit amet velit. 
+  Suspendisse id sem consectetuer libero luctus adipiscing.
 ```
 
 但是如果你懒，那也行：
@@ -214,8 +215,13 @@ luctus adipiscing.
 列表项目可以包含多个段落，每个项目下的段落都必须缩进 4 个空格或是 1 个制表符：
 
 ```code
-1. This is a list item with two paragraphs. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus. 
-Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus. Donec sit amet nisl. Aliquam semper ipsum sit amet velit.
+1. This is a list item with two paragraphs. Lorem ipsum dolor 
+   sit amet, consectetuer adipiscing elit. Aliquam hendrerit 
+   mi posuere lectus. 
+   
+   Vestibulum enim wisi, viverra nec, fringilla in, laoreet 
+   vitae, risus. Donec sit amet nisl. Aliquam semper ipsum 
+   sit amet velit.
 2. Suspendisse id sem consectetuer libero luctus adipiscing.
 ```
 
