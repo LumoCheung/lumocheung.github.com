@@ -22,7 +22,6 @@ Markdown 不是想要取代 HTML，甚至也没有要和它相近，它的语法
 例子如下，在 Markdown 文件里加上一段 HTML 表格：
 
 ```html
-
 这是一个普通段落。
 <table> 
     <tr> 
@@ -30,7 +29,6 @@ Markdown 不是想要取代 HTML，甚至也没有要和它相近，它的语法
     </tr>
 </table>
 这是另一个普通段落。
-
 ```
 
 请注意，在 HTML 区块标签间的 Markdown 格式语法将不会被处理。比如，你在 HTML 区块内使用 Markdown 样式的`*强调*`会没有效果。
