@@ -182,10 +182,11 @@ Markdown 支持有序列表和无序列表。
 但是如果你懒，那也行：
 
 ```code
-* Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Aliquam hendrerit mi posuere lectus. 
-Vestibulum enim wisi,viverra nec, fringilla in, laoreet vitae, risus.
-* Donec sit amet nisl. Aliquam semper ipsum sit amet velit.Suspendisse id sem consectetuer libero 
-luctus adipiscing.
+* Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+Aliquam hendrerit mi posuere lectus. Vestibulum enim wisi,
+viverra nec, fringilla in, laoreet vitae, risus.
+* Donec sit amet nisl. Aliquam semper ipsum sit amet velit.
+Suspendisse id sem consectetuer libero luctus adipiscing.
 ```
 
 如果列表项目间用空行分开，在输出 HTML 时 Markdown 就会将项目内容用` <p>` 标签包起来，举例来说：
@@ -229,8 +230,9 @@ luctus adipiscing.
 
 ```code
 * This is a list item with two paragraphs. 
-  This is the second paragraph in the list item. You'reonly required to indent the first line. Lorem 
-ipsum dolorsit amet, consectetuer adipiscing elit.
+  This is the second paragraph in the list item. You'reonly 
+required to indent the first line. Lorem ipsum dolorsit amet,
+consectetuer adipiscing elit.
 * Another item in the same list.
 ```
 
