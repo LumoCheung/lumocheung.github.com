@@ -179,39 +179,36 @@ Markdown 支持有序列表和无序列表。
 ```
 
 但是如果你懒，那也行：
-```
 
+```bash
 * Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Aliquam hendrerit mi posuere lectus. 
 Vestibulum enim wisi,viverra nec, fringilla in, laoreet vitae, risus.
 * Donec sit amet nisl. Aliquam semper ipsum sit amet velit.Suspendisse id sem consectetuer libero 
 luctus adipiscing.
-
 ```
 
 如果列表项目间用空行分开，在输出 HTML 时 Markdown 就会将项目内容用` <p>` 标签包起来，举例来说：
 `* Bird* Magic`
 
 会被转换为：
-```
 
+```html
 <ul>
     <li>Bird</li>
     <li>Magic</li>
 </ul>
-
 ```
 
 但是这个：
 `* Bird* Magic`
 
 会被转换为：
-```
 
+```html
 <ul>
     <li><p>Bird</p></li>
     <li><p>Magic</p></li>
 </ul>
-
 ```
 
 列表项目可以包含多个段落，每个项目下的段落都必须缩进 4 个空格或是 1 个制表符：
@@ -220,30 +217,27 @@ Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus. Donec sit
 2. Suspendisse id sem consectetuer libero luctus adipiscing.
 
 如果你每行都有缩进，看起来会看好很多，当然，再次地，如果你很懒惰，Markdown 也允许：
-```
 
+```bash
 * This is a list item with two paragraphs. 
   This is the second paragraph in the list item. You'reonly required to indent the first line. Lorem 
 ipsum dolorsit amet, consectetuer adipiscing elit.
 * Another item in the same list.
-
 ```
 
 如果要在列表项目内放进引用，那 > 就需要缩进：
-```
 
+```bash
 * A list item with a blockquote: 
   > This is a blockquote 
   > inside a list item.
-  
 ```
 
 如果要放代码区块的话，该区块就需要缩进**两次**，也就是 8 个空格或是 2 个制表符：
-```
 
+```bash
 * 一列表项包含一个列表区块： 
     <代码写在这>
-    
 ```
 
 当然，项目列表很可能会不小心产生，像是下面这样的写法：
@@ -255,76 +249,68 @@ ipsum dolorsit amet, consectetuer adipiscing elit.
 #### 代码区块
 和程序相关的写作或是标签语言原始码通常会有已经排版好的代码区块，通常这些区块我们并不希望它以一般段落文件的方式去排版，而是照原来的样子显示，Markdown 会用 `<pre>` 和 `<code>` 标签来把代码区块包起来。
 要在 Markdown 中建立代码区块很简单，只要简单地缩进 4 个空格或是 1 个制表符就可以，例如，下面的输入：
-```
 
+```bash
 这是一个普通段落： 
   这是一个代码区块。
-  
 ```
 
 Markdown 会转换成：
-```
 
+```bash
 <p>这是一个普通段落：</p>
 <pre><code>这是一个代码区块。
 </code></pre>
-
 ```
 
 这个每行一阶的缩进（4 个空格或是 1 个制表符），都会被移除，例如：
-```
 
+```bash
 Here is an example of AppleScript: 
 
   tell application "Foo" 
     beep 
   end tell
-  
 ```
 
 会被转换为：
-```
 
+```html
 <p>Here is an example of AppleScript:</p>
 
 <pre><code>tell application "Foo" 
   beep
 end tell
 </code></pre>
-
 ```
 
 一个代码区块会一直持续到没有缩进的那一行（或是文件结尾）。
 在代码区块里面， & 、 < 和 > 会自动转成 HTML 实体，这样的方式让你非常容易使用 Markdown 插入范例用的 HTML 原始码，只需要复制贴上，再加上缩进就可以了，剩下的 Markdown 都会帮你处理，例如：
-```
 
+```html
   <div class="footer"> 
     &copy;  2004 Foo Corporation 
   </div>
-  
 ```
 
 会被转换为：
-```
 
+```html
 <pre><code>&lt;div class="footer"&gt; 
   &amp;copy; 2004 Foo Corporation
 &lt;/div&gt;
 </code></pre>
-
 ```
 
 代码区块中，一般的 Markdown 语法不会被转换，像是星号便只是星号，这表示你可以很容易地以 Markdown 语法撰写 Markdown 语法相关的文件。
 分隔线
 你可以在一行中用三个以上的星号、减号、底线来建立一个分隔线，行内不能有其他东西。你也可以在星号或是减号中间插入空格。下面每种写法都可以建立分隔线：
-```
-
+```bash
 * * *
 ***
 *****
 - - -
 ---------------------------------------
-
 ```
 
 ## 区段元素
@@ -333,40 +319,34 @@ end tell
 Markdown 支持两种形式的链接语法： **行内式**和**参考式**两种形式。
 不管是哪一种，链接文字都是用 [方括号] 来标记。
 要建立一个**行内式**的链接，只要在方块括号后面紧接着圆括号并插入网址链接即可，如果你还想要加上链接的 title 文字，只要在网址后面，用双引号把 title 文字包起来即可，例如：
-```
 
+```bash
 This is [an example](http://example.com/ "Title") inline link.
 [This link](http://example.net/) has no title attribute.
-
 ```
 
 会产生：
-```
 
+```html
 <p>This is <a href="http://example.com/" title="Title">an example</a> inline link.</p>
 <p><a href="http://example.net/">This link</a> has notitle attribute.</p>
-
 ```
 
 如果你是要链接到同样主机的资源，你可以使用相对路径：
-```
 
+```markdown
 See my [About](/about/) page for details.
-
 ```
 
 **参考式**的链接是在链接文字的括号后面再接上另一个方括号，而在第二个方括号里面要填入用以辨识链接的标记：
+
 ```
-
 This is [an example][id] reference-style link.
-
 ```
 
 你也可以选择性地在两个方括号中间加上一个空格：
 ```
-
 This is [an example] [id] reference-style link.
-
 ```
 
 接着，在文件的任意处，你可以把这个标记的链接内容定义出来：
