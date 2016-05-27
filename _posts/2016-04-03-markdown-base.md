@@ -19,6 +19,7 @@ Markdown 不是想要取代 HTML，甚至也没有要和它相近，它的语法
 不在 Markdown 涵盖范围之内的标签，都可以直接在文档里面用 HTML 撰写。不需要额外标注这是 HTML 或是 Markdown；只要直接加标签就可以了。
 要制约的只有一些 HTML 区块元素――比如 `<div>`、`<table>`、`<pre>`、`<p>` 等标签，必须在前后加上空行与其它内容区隔开，还要求它们的开始标签与结尾标签不能用制表符或空格来缩进。Markdown 的生成器有足够智能，不会在 HTML 区块标签外加上不必要的 `<p>` 标签。
 例子如下，在 Markdown 文件里加上一段 HTML 表格：
+
 ```html
 这是一个普通段落。
 <table> 
@@ -57,6 +58,7 @@ Markdown 将会把它转换为：`4 &lt; 5`
 #### 标题
 Markdown 支持两种标题的语法，类 [Setext](http://docutils.sourceforge.net/mirror/setext.html) 和类 [atx](http://www.aaronsw.com/2002/atx/) 形式。
 类 Setext 形式是用底线的形式，利用 = （最高阶标题）和 - （第二阶标题），例如：
+
 ```bash
 This is an H1
 =============
@@ -65,6 +67,7 @@ This is an H2
 ```
 
 任何数量的 = 和 - 都可以有效果。类 `Atx` 形式则是在行首插入 1 到 6 个 # ，对应到标题 1 到 6 阶，例如：
+
 ```bash
 # 这是 H1
 ## 这是 H2
