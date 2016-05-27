@@ -404,7 +404,7 @@ This is [an example] [id] reference-style link.
 [link text][A]
 ```
 
-*隐式链接标记*功能让你可以省略指定链接标记，这种情形下，链接标记会视为等同于链接文字，要用隐式链接标记只要在链接文字后面加上一个空的方括号，如果你要让 "Google" 链接到 google.com，你可以简化成：
+**隐式链接标记**功能让你可以省略指定链接标记，这种情形下，链接标记会视为等同于链接文字，要用隐式链接标记只要在链接文字后面加上一个空的方括号，如果你要让 "Google" 链接到 google.com，你可以简化成：
 
 ```code
 [Google][]
@@ -654,7 +654,8 @@ _ 底线
 
 ## 感谢
 感谢 [leafy7382](https://twitter.com/#!/leafy7382) 协助翻译，[hlb](http://iamhlb.com/)、[Randylien](http://twitter.com/randylien) 帮忙润稿，[ethantw](https://twitter.com/#!/ethantw) 的[汉字标准格式・CSS Reset](http://ethantw.net/projects/han/)， [WM](http://kidwm.net/) 回报文字错误。
-感谢 [fenprace](https://github.com/fenprace)，[addv](https://github.com/addv)。
+感谢 [fenprace](https://github.com/fenprace)，[addv](https://github.com/addv)，
+感谢[riku](https://gitcafe.com/riku/Markdown-Syntax-CN)，本文转自[riku]（https://gitcafe.com/riku/Markdown-Syntax-CN）。
 
 ---
 
@@ -681,4 +682,4 @@ Mac 平台
 
 *** 
 
-如有更好的 Markdown 免费编辑器推荐，请到[这里反馈](https://gitcafe.com/riku/Markdown-Syntax-CN/tickets/1)，谢谢！
+如有更好的 Markdown 免费编辑器推荐，请到[这里反馈](https://github.com/LumoCheung/lumocheung.github.com/issues/new)，谢谢！
