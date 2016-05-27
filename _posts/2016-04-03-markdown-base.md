@@ -76,7 +76,7 @@ This is an H2
 
 你可以选择性地「闭合」类 `atx` 样式的标题，这纯粹只是美观用的，若是觉得这样看起来比较舒适，你就可以在行尾加上 #，而行尾的# 数量也不用和开头一样（行首的井字符数量决定标题的阶数）：
 
-```
+```bash
 # 这是 H1 #
 ## 这是 H2 ##
 ### 这是 H3 ######
@@ -85,7 +85,7 @@ This is an H2
 #### 区块引用 Blockquotes
 Markdown 标记区块引用是使用类似 email 中用 > 的引用方式。如果你还熟悉在 email 信件中的引言部分，你就知道怎么在 Markdown 文件中建立一个区块引用，那会看起来像是你自己先断好行，然后在每行的最前面加上 > ：
 
-```
+```bash
 >This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
 > consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
 > Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.
@@ -94,33 +94,30 @@ Markdown 标记区块引用是使用类似 email 中用 > 的引用方式。�
 ```
 
 Markdown 也允许你偷懒只在整个段落的第一行最前面加上 > ：
-```
 
+```bash
 > This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,consectetuer adipiscing 
 elit. Aliquam hendrerit mi posuere lectus.Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, 
 risus.
 > Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisseid sem consectetuer libero 
 luctus adipiscing.
-
 ```
 区块引用可以嵌套（例如：引用内的引用），只要根据层次加上不同数量的 > ：
-```
 
+```bash
 > This is the first level of quoting.
 >> > This is nested blockquote.
 >> Back to the first level.
-
 ```
 
 引用的区块内也可以使用其他的 Markdown 语法，包括标题、列表、代码区块等：
-```
 
+```bash
 > ## 这是一个标题。
 > > 1. 这是第一行列表项。
 > 2. 这是第二行列表项。
 > > 给出一些例子代码：
 > > return shell_exec("echo $input | $markdown_script");
-
 ```
 任何像样的文本编辑器都能轻松地建立 email 型的引用。例如在 BBEdit 中，你可以选取文字后然后从选单中选择**增加引用阶层**。
 
@@ -136,14 +133,16 @@ Markdown 支持有序列表和无序列表。
 `- Red- Green- Blue`
 
 有序列表则使用数字接着一个英文句点：
-```
+
+```bash
 1. Bird
 2. McHale
 3. Parish
 ```
 
 很重要的一点是，你在列表标记上使用的数字并不会影响输出的 HTML 结果，上面的列表所产生的 HTML 标记为：
-```
+
+```html
 <ol>
     <li>Bird</li>
     <li>McHale</li>
@@ -152,14 +151,16 @@ Markdown 支持有序列表和无序列表。
 ```
 
 如果你的列表标记写成：
-```
+
+```bash
 1. Bird
 1. McHale
 1. Parish
 ```
 
 或甚至是：
-```
+
+```bash
 3. Bird
 1. McHale
 8. Parish
@@ -169,13 +170,12 @@ Markdown 支持有序列表和无序列表。
 如果你使用懒惰的写法，建议第一个项目最好还是从 1. 开始，因为 Markdown 未来可能会支持有序列表的 start 属性。
 列表项目标记通常是放在最左边，但是其实也可以缩进，最多 3 个空格，项目标记后面则一定要接着至少一个空格或制表符。
 要让列表看起来更漂亮，你可以把内容用固定的缩进整理好：
-```
 
+```bash
 * Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus. 
   Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.
 * Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse id sem consectetuer libero
   luctus adipiscing.
-  
 ```
 
 但是如果你懒，那也行：
