@@ -75,24 +75,22 @@ This is an H2
 ```
 
 你可以选择性地「闭合」类 `atx` 样式的标题，这纯粹只是美观用的，若是觉得这样看起来比较舒适，你就可以在行尾加上 #，而行尾的# 数量也不用和开头一样（行首的井字符数量决定标题的阶数）：
-```
 
+```
 # 这是 H1 #
 ## 这是 H2 ##
 ### 这是 H3 ######
-
 ```
 
 #### 区块引用 Blockquotes
 Markdown 标记区块引用是使用类似 email 中用 > 的引用方式。如果你还熟悉在 email 信件中的引言部分，你就知道怎么在 Markdown 文件中建立一个区块引用，那会看起来像是你自己先断好行，然后在每行的最前面加上 > ：
-```
 
+```
 >This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
 > consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
 > Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.
 > > Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse
 > id sem consectetuer libero luctus adipiscing.
-
 ```
 
 Markdown 也允许你偷懒只在整个段落的第一行最前面加上 > ：
