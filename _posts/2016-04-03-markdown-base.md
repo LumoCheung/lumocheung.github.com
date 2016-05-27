@@ -85,7 +85,7 @@ This is an H2
 #### 区块引用 Blockquotes
 Markdown 标记区块引用是使用类似 email 中用 > 的引用方式。如果你还熟悉在 email 信件中的引言部分，你就知道怎么在 Markdown 文件中建立一个区块引用，那会看起来像是你自己先断好行，然后在每行的最前面加上 > ：
 
-```bash
+```code
 >This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
 > consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
 > Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.
@@ -95,7 +95,7 @@ Markdown 标记区块引用是使用类似 email 中用 > 的引用方式。�
 
 Markdown 也允许你偷懒只在整个段落的第一行最前面加上 > ：
 
-```bash
+```code
 > This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,consectetuer adipiscing 
 elit. Aliquam hendrerit mi posuere lectus.Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, 
 risus.
@@ -104,7 +104,7 @@ luctus adipiscing.
 ```
 区块引用可以嵌套（例如：引用内的引用），只要根据层次加上不同数量的 > ：
 
-```bash
+```code
 > This is the first level of quoting.
 >> > This is nested blockquote.
 >> Back to the first level.
@@ -134,7 +134,7 @@ Markdown 支持有序列表和无序列表。
 
 有序列表则使用数字接着一个英文句点：
 
-```bash
+```code
 1. Bird
 2. McHale
 3. Parish
@@ -152,7 +152,7 @@ Markdown 支持有序列表和无序列表。
 
 如果你的列表标记写成：
 
-```bash
+```code
 1. Bird
 1. McHale
 1. Parish
@@ -160,7 +160,7 @@ Markdown 支持有序列表和无序列表。
 
 或甚至是：
 
-```bash
+```code
 3. Bird
 1. McHale
 8. Parish
