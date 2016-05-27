@@ -59,7 +59,7 @@ Markdown 将会把它转换为：`4 &lt; 5`
 Markdown 支持两种标题的语法，类 [Setext](http://docutils.sourceforge.net/mirror/setext.html) 和类 [atx](http://www.aaronsw.com/2002/atx/) 形式。
 类 Setext 形式是用底线的形式，利用 = （最高阶标题）和 - （第二阶标题），例如：
 
-```bash
+```code
 This is an H1
 =============
 This is an H2
@@ -68,7 +68,7 @@ This is an H2
 
 任何数量的 = 和 - 都可以有效果。类 `Atx` 形式则是在行首插入 1 到 6 个 # ，对应到标题 1 到 6 阶，例如：
 
-```bash
+```code
 # 这是 H1
 ## 这是 H2
 ###### 这是 H6
@@ -76,7 +76,7 @@ This is an H2
 
 你可以选择性地「闭合」类 `atx` 样式的标题，这纯粹只是美观用的，若是觉得这样看起来比较舒适，你就可以在行尾加上 #，而行尾的# 数量也不用和开头一样（行首的井字符数量决定标题的阶数）：
 
-```bash
+```code
 # 这是 H1 #
 ## 这是 H2 ##
 ### 这是 H3 ######
@@ -112,7 +112,7 @@ luctus adipiscing.
 
 引用的区块内也可以使用其他的 Markdown 语法，包括标题、列表、代码区块等：
 
-```bash
+```code
 > ## 这是一个标题。
 > > 1. 这是第一行列表项。
 > 2. 这是第二行列表项。
@@ -171,7 +171,7 @@ Markdown 支持有序列表和无序列表。
 列表项目标记通常是放在最左边，但是其实也可以缩进，最多 3 个空格，项目标记后面则一定要接着至少一个空格或制表符。
 要让列表看起来更漂亮，你可以把内容用固定的缩进整理好：
 
-```bash
+```code
 * Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus. 
   Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.
 * Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse id sem consectetuer libero
@@ -180,7 +180,7 @@ Markdown 支持有序列表和无序列表。
 
 但是如果你懒，那也行：
 
-```bash
+```code
 * Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Aliquam hendrerit mi posuere lectus. 
 Vestibulum enim wisi,viverra nec, fringilla in, laoreet vitae, risus.
 * Donec sit amet nisl. Aliquam semper ipsum sit amet velit.Suspendisse id sem consectetuer libero 
@@ -214,14 +214,14 @@ luctus adipiscing.
 列表项目可以包含多个段落，每个项目下的段落都必须缩进 4 个空格或是 1 个制表符：
 
 ```code
-1. This is a list item with two paragraphs. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam hendrerit mi posuere     lectus. 
-    Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus. Donec sit amet nisl. Aliquam semper ipsum sit amet velit.
+1. This is a list item with two paragraphs. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus. 
+Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus. Donec sit amet nisl. Aliquam semper ipsum sit amet velit.
 2. Suspendisse id sem consectetuer libero luctus adipiscing.
 ```
 
 如果你每行都有缩进，看起来会看好很多，当然，再次地，如果你很懒惰，Markdown 也允许：
 
-```bash
+```code
 * This is a list item with two paragraphs. 
   This is the second paragraph in the list item. You'reonly required to indent the first line. Lorem 
 ipsum dolorsit amet, consectetuer adipiscing elit.
@@ -230,7 +230,7 @@ ipsum dolorsit amet, consectetuer adipiscing elit.
 
 如果要在列表项目内放进引用，那 > 就需要缩进：
 
-```bash
+```code
 * A list item with a blockquote: 
   > This is a blockquote 
   > inside a list item.
@@ -238,7 +238,7 @@ ipsum dolorsit amet, consectetuer adipiscing elit.
 
 如果要放代码区块的话，该区块就需要缩进**两次**，也就是 8 个空格或是 2 个制表符：
 
-```bash
+```code
 * 一列表项包含一个列表区块： 
     <代码写在这>
 ```
@@ -309,7 +309,7 @@ end tell
 分隔线
 你可以在一行中用三个以上的星号、减号、底线来建立一个分隔线，行内不能有其他东西。你也可以在星号或是减号中间插入空格。下面每种写法都可以建立分隔线：
 
-```bash
+```code
 * * *
 ***
 *****
@@ -324,7 +324,7 @@ Markdown 支持两种形式的链接语法： **行内式**和**参考式**两�
 不管是哪一种，链接文字都是用 [方括号] 来标记。
 要建立一个**行内式**的链接，只要在方块括号后面紧接着圆括号并插入网址链接即可，如果你还想要加上链接的 title 文字，只要在网址后面，用双引号把 title 文字包起来即可，例如：
 
-```bash
+```code
 This is [an example](http://example.com/ "Title") inline link.
 [This link](http://example.net/) has no title attribute.
 ```
@@ -338,25 +338,25 @@ This is [an example](http://example.com/ "Title") inline link.
 
 如果你是要链接到同样主机的资源，你可以使用相对路径：
 
-```bash
+```code
 See my [About](/about/) page for details.
 ```
 
 **参考式**的链接是在链接文字的括号后面再接上另一个方括号，而在第二个方括号里面要填入用以辨识链接的标记：
 
-```bash
+```code
 This is [an example][id] reference-style link.
 ```
 
 你也可以选择性地在两个方括号中间加上一个空格：
 
-```bash
+```code
 This is [an example] [id] reference-style link.
 ```
 
 接着，在文件的任意处，你可以把这个标记的链接内容定义出来：
 
-```bash
+```code
 [id]: http://example.com/ "Optional Title Here"
 ```
 
@@ -369,7 +369,7 @@ This is [an example] [id] reference-style link.
 
 下面这三种链接的定义都是相同：
 
-```bash
+```code
 [foo]: http://example.com/ "Optional Title Here"
 [foo]: http://example.com/ 'Optional Title Here'
 [foo]: http://example.com/ (Optional Title Here)
@@ -378,45 +378,45 @@ This is [an example] [id] reference-style link.
 **请注意：**有一个已知的问题是 Markdown.pl 1.0.1 会忽略单引号包起来的链接 title。
 链接网址也可以用尖括号包起来：
 
-```bash
+```code
 [id]: <http://example.com/> "Optional Title Here"
 ```
 
 你也可以把 title 属性放到下一行，也可以加一些缩进，若网址太长的话，这样会比较好看：
 
-```bash
+```code
 [id]: http://example.com/longish/path/to/resource/here "Optional Title Here"
 ```
 
 网址定义只有在产生链接的时候用到，并不会直接出现在文件之中。
 链接辨别标签可以有字母、数字、空白和标点符号，但是并*不*区分大小写，因此下面两个链接是一样的：
 
-```bash
+```code
 [link text][a]
 [link text][A]
 ```
 
 *隐式链接标记*功能让你可以省略指定链接标记，这种情形下，链接标记会视为等同于链接文字，要用隐式链接标记只要在链接文字后面加上一个空的方括号，如果你要让 "Google" 链接到 google.com，你可以简化成：
 
-```bash
+```code
 [Google][]
 ```
 
 然后定义链接内容：
 
-```bash
+```code
 [Google]: http://google.com/
 ```
 
 由于链接文字可能包含空白，所以这种简化型的标记内也许包含多个单词：
 
-```bash
+```code
 Visit [Daring Fireball][] for more information.
 ```
 
 然后接着定义链接：
 
-```bash
+```code
 [Daring Fireball]: http://daringfireball.net/
 ```
 
@@ -490,14 +490,14 @@ un*frigging*believable
 但是**如果你的 * 和 _ 两边都有空白的话，它们就只会被当成普通的符号**。
 如果要在文字前后直接插入普通的星号或底线，你可以用反斜线：
 
-```bash
+```code
 \*this text is surrounded by literal asterisks\*
 ```
 
 #### 代码
 如果要标记一小段行内代码，你可以用反引号把它包起来（\`），例如：
 
-```bash
+```code
 Use the `printf()` function.
 ```
 
@@ -509,7 +509,7 @@ Use the `printf()` function.
 
 如果要在代码区段内插入反引号，你可以用多个反引号来开启和结束代码区段：
 
-```bash
+```code
 ``There is a literal backtick (`) here.``
 ```
 
@@ -521,7 +521,7 @@ Use the `printf()` function.
 
 代码区段的起始和结束端都可以放入一个空白，起始端后面一个，结束端前面一个，这样你就可以在区段的一开始就插入反引号：
 
-```bash
+```code
 A single backtick in a code span: `` ` ``
 A backtick-delimited string in a code span: `` `foo` ``
 ```
@@ -535,7 +535,7 @@ A backtick-delimited string in a code span: `` `foo` ``
 
 在代码区段内，& 和尖括号**都**会被自动地转成 HTML 实体，这使得插入 HTML 原始码变得很容易，Markdown 会把下面这段：
 
-```bash
+```code
 Please don't use any `<blink>` tags.
 ```
 
@@ -547,7 +547,7 @@ Please don't use any `<blink>` tags.
 
 你也可以这样写：
 
-```bash
+```code
 `—` is the decimal-encoded equivalent of `—`.
 ```
 
@@ -562,7 +562,7 @@ Please don't use any `<blink>` tags.
 Markdown 使用一种和链接很相似的语法来标记图片，同样也允许两种样式： *行内式*和*参考式*。
 行内式的图片语法看起来像是：
 
-```bash
+```code
 ![Alt text](/path/to/img.jpg)
 ![Alt text](/path/to/img.jpg "Optional title")
 ```
@@ -574,7 +574,7 @@ Markdown 使用一种和链接很相似的语法来标记图片，同样也允�
 
 参考式的图片语法则长得像这样：
 
-```bash
+```code
 ![Alt text][id]
 ```
 
@@ -590,7 +590,7 @@ Markdown 使用一种和链接很相似的语法来标记图片，同样也允�
 #### 自动链接
 Markdown 支持以比较简短的自动链接形式来处理网址和电子邮件信箱，只要是用尖括号包起来， Markdown 就会自动把它转成链接。一般网址的链接文字就和链接地址一样，例如：
 
-```bash
+```code
 <http://example.com/>
 ```
 
@@ -602,7 +602,7 @@ Markdown 会转为：
 
 邮址的自动链接也很类似，只是 Markdown 会先做一个编码转换的过程，把文字字符转成 16 进位码的 HTML 实体，这样的格式可以糊弄一些不好的邮址收集机器人，例如：
 
-```bash
+```code
 <address@example.com>
 ```
 
@@ -621,13 +621,13 @@ Markdown 会转成：
 ####反斜杠
 Markdown 可以利用反斜杠来插入一些在语法中有其它意义的符号，例如：如果你想要用星号加在文字旁边的方式来做出强调效果（但不用 `<em>` 标签），你可以在星号的前面加上反斜杠：
 
-```bash
+```code
 \*literal asterisks\*
 ```
 
 Markdown 支持以下这些符号前面加上反斜杠来帮助插入普通的符号：
 
-```bash
+```code
 \ 反斜线
 ` 反引号
 * 星号
