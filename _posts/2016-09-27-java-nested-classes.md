@@ -99,6 +99,7 @@ public class Demo {
 ```
 
 运行结果：
+
 ```code
 局部变量：14  
 内部类变量：13  
@@ -210,6 +211,7 @@ public class Demo {
 }
 ```
 运行结果：
+
 ```code
 3  
 12
