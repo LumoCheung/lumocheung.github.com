@@ -7,6 +7,7 @@ pulished: true
 excerpt_separator: "```"
 ---
 本文来自：[Nerxious](http://www.cnblogs.com/nerxious/archive/2013/01/24/2875649.html)  
+
 *片外语：一个比较不怎么实用的知识，可能只会用在面试或是考试，smile~*
 
 ---
