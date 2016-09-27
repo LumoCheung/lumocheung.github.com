@@ -99,7 +99,7 @@ public class Demo {
 ```
 
 运行结果：
-```
+```code
 局部变量：14  
 内部类变量：13  
 外部类变量：12 
@@ -143,6 +143,7 @@ public class Demo {
 其次，因为内部类被静态化，因此`Out.In`可以当做一个整体看，可以直接new 出内部类的对象（通过类名访问static，生不生成外部类对象都没关系）
 
 ---
+
 #### 实例4：私有内部类
 ```javascript
 class Out {
@@ -209,7 +210,7 @@ public class Demo {
 }
 ```
 运行结果：
-```
+```code
 3  
 12
 ```
