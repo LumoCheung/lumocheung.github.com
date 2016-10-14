@@ -68,8 +68,8 @@ sudoers file: syntax error, line 22
 此时我们有三种选择：键入“e”是重新编辑，键入“x”是不保存退出，键入“Q”是退出并保存。如果真选择Q，那么sudo将不会再运行，直到错误被纠正。
 
 　　现在，我们一起来看一下神秘的配置文件，学一下如何编写它。让我们从一个简单的例子开始：让用户Foobar可以通过sudo执行所有root可执行的命令。以root身份用visudo打开配置文件，可以看到类似下面几行：
-　　
-```
+
+```bash
 # Runas alias specification
 # User privilege specificationroot    ALL=(ALL)ALL
 ```
