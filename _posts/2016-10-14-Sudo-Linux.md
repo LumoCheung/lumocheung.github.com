@@ -41,17 +41,19 @@ sudo -K -L -V -h -k -l -vsudo [-HPSb] [-a auth_type] [-c class-] [-p prompt] [-u
 ```
 
 　　下面我们再来看一下sudo其它常用的一些参数：
-|选项     |含义     |作用|
-| ------------- |:-------------:|:-----:|
-|sudo -h|Help|列出使用方法，退出。|
-|sudo -V     |Version     |显示版本信息，并退出。|
-|sudo -l     |List     |列出当前用户可以执行的命令。只有在sudoers里的用户才能使用该选项。|
-|sudo -u username#uid     |User     |以指定用户的身份执行命令。后面的用户是除root以外的，可以是用户名，也可以是#uid|。
-|sudo -k     |Kill     |清除“入场卷”上的时间，下次再使用sudo时要再输入密码。|
-|sudo -K     |Sure kill|与-k类似，但是它还要撕毁“入场卷”，也就是删除时间戳文件。|
-|sudo -b command     |Background|在后台执行指定的命令。|
-|sudo -p prompt command     |Prompt     |可以更改询问密码的提示语，其中%u会代换为使用者帐号名称，%h会显示主机名称。非常人性化的设计。|
-|sudo -e file     |Edit     |不是执行命令，而是修改文件，相当于命令sudoedit。|
+  
+```
+选项     含义     作用
+sudo -h     Help     列出使用方法，退出。
+sudo -V     Version     显示版本信息，并退出。
+sudo -l     List     列出当前用户可以执行的命令。只有在sudoers里的用户才能使用该选项。
+sudo -u username#uid     User     以指定用户的身份执行命令。后面的用户是除root以外的，可以是用户名，也可以是#uid。
+sudo -k     Kill     清除“入场卷”上的时间，下次再使用sudo时要再输入密码。
+sudo -K     Sure kill     与-k类似，但是它还要撕毁“入场卷”，也就是删除时间戳文件。
+sudo -b command     Background     在后台执行指定的命令。
+sudo -p prompt command     Prompt     可以更改询问密码的提示语，其中%u会代换为使用者帐号名称，%h会显示主机名称。非常人性化的设计。
+sudo -e file     Edit     不是执行命令，而是修改文件，相当于命令sudoedit。
+```
 
 #### 3.配置sudo
 
