@@ -20,12 +20,12 @@ https://raw.githubusercontent.com/antirez/redis/3.0/00-RELEASENOTES
 
 
 目前redis支持的cluster特性(已测试):  
-1) 节点自动发现
-2) slave->master 选举,集群容错
-3) Hot resharding:在线分片
-4) 集群管理:cluster xxx
-5) 基于配置(nodes-port.conf)的集群管理
-6) ASK 转向/MOVED 转向机制.
+1) 节点自动发现   
+2) slave->master 选举,集群容错   
+3) Hot resharding:在线分片   
+4) 集群管理:cluster xxx   
+5) 基于配置(nodes-port.conf)的集群管理   
+6) ASK 转向/MOVED 转向机制.   
 
 ### 2 redis cluster 架构
 
@@ -43,12 +43,12 @@ https://raw.githubusercontent.com/antirez/redis/3.0/00-RELEASENOTES
  
 ![redis-cluster选举图](http://lumocheung.github.io/assets/img/ewcx2640qfhdp35lmrjsnyu9aoiv8kbgtz71.jpg)
  
-1) 领着选举过程是集群中所有master参与,如果半数以上master节点与master节点通信超过(cluster-node-timeout),认为当前master节点挂掉.
-2) 什么时候整个集群不可用(cluster_state:fail)?
-    1. 如果集群任意master挂掉,且当前master没有slave.集群进入fail状态,也可以理解成集群的slot映射[0-16383]不完成时进入fail状态.   
-    ps : redis-3.0.0.rc1加入cluster-require-full-coverage参数,默认关闭,打开集群兼容部分失败.
-    2. 如果集群超过半数以上master挂掉，无论是否有slave集群进入fail状态.   
-    ps:当集群不可用时,所有对集群的操作做都不可用，收到((error) CLUSTERDOWN The cluster is down)错误
+1) 领着选举过程是集群中所有master参与,如果半数以上master节点与master节点通信超过(cluster-node-timeout),认为当前master节点挂掉.   
+2) 什么时候整个集群不可用(cluster_state:fail)?   
+    a. 如果集群任意master挂掉,且当前master没有slave.集群进入fail状态,也可以理解成集群的slot映射[0-16383]不完成时进入fail状态.   
+    ps : redis-3.0.0.rc1加入cluster-require-full-coverage参数,默认关闭,打开集群兼容部分失败.   
+    b. 如果集群超过半数以上master挂掉，无论是否有slave集群进入fail状态.   
+    ps:当集群不可用时,所有对集群的操作做都不可用，收到((error) CLUSTERDOWN The cluster is down)错误   
   
 ## 二:redis cluster的使用
 
@@ -365,7 +365,7 @@ redis-trib.rb del-node 10.10.34.14:6386 'f51e26b5d5ff74f85341f06f28f125b7254e61b
 
 ### 1 客户端基本操作使用
 
-```JavaScript
+```Javascript
 private static BinaryJedisCluster jc;  
   static {  
        //只给集群里一个实例就可以  
