@@ -7,6 +7,8 @@ pulished: true
 excerpt_separator: "#"
 ---
 
+Redis 是一个开源（BSD许可）的，内存中的数据结构存储系统，它可以用作数据库、缓存和消息中间件。 它支持多种类型的数据结构，如 字符串（strings）， 散列（hashes）， 列表（lists）， 集合（sets）， 有序集合（sorted sets） 与范围查询， bitmaps， hyperloglogs 和 地理空间（geospatial） 索引半径查询。 Redis 内置了 复制（replication），LUA脚本（Lua scripting）， LRU驱动事件（LRU eviction），事务（transactions） 和不同级别的 磁盘持久化（persistence）， 并通过 Redis哨兵（Sentinel）和自动 分区（Cluster）提供高可用性（high availability）。
+
 ## 一:关于redis cluster
 
 ### 1 redis cluster的现状
@@ -263,52 +265,51 @@ redis-trib.rb check 10.10.34.14:6380
 
 1) 添加一个master节点:创建一个空节点（empty node），然后将某些slot移动到这个空节点上,这个过程目前需要人工干预
 
-    1) 根据端口生成配置文件(ps:establish_config.sh是我自己写的输出配置脚本)
+1) 根据端口生成配置文件(ps:establish_config.sh是我自己写的输出配置脚本)
 
-    ```bash
-    sh establish_config.sh 6386 > conf/redis-6386.conf  
-    ```
+```bash
+sh establish_config.sh 6386 > conf/redis-6386.conf  
+```
 
-    2) 启动节点
+2) 启动节点
 
-    ```bash
-    redis-server /opt/redis/conf/redis-6386.conf > /opt/redis/logs/redis-6386.log 2>&1 &
-    ``` 
+```bash
+redis-server /opt/redis/conf/redis-6386.conf > /opt/redis/logs/redis-6386.log 2>&1 &
+``` 
 
-    3) 加入空节点到集群
-    add-node  将一个节点添加到集群里面， 第一个是新节点ip:port, 第二个是任意一个已存在节点ip:port
-    
-    ```bash
-    redis-trib.rb add-node 10.10.34.14:6386 10.10.34.14:6381  
-    ```
-    
-    node:新节点没有包含任何数据， 因为它没有包含任何slot。新加入的加点是一个主节点， 当集群需要将某个从节点升级为新的主节点时， 这个新节点不会被选中，同时新的主节点因为没有包含任何slot，不参加选举和failover。
+3) 加入空节点到集群
+add-node  将一个节点添加到集群里面， 第一个是新节点ip:port, 第二个是任意一个已存在节点ip:port
 
-    4) 为新节点分配slot
+```bash
+redis-trib.rb add-node 10.10.34.14:6386 10.10.34.14:6381  
+```
 
-    ```bash
-    redis-trib.rb reshard 10.10.34.14:6386  
-    #根据提示选择要迁移的slot数量(ps:这里选择500)  
-    How many slots do you want to move (from 1 to 16384)? 500  
-    #选择要接受这些slot的node-id  
-    What is the receiving node ID? f51e26b5d5ff74f85341f06f28f125b7254e61bf  
-    #选择slot来源:  
-    #all表示从所有的master重新分配，  
-    #或者数据要提取slot的master节点id,最后用done结束  
-    Please enter all the source node IDs.  
-    Type 'all' to use all the nodes as source nodes for the hash slots.  
-    Type 'done' once you entered all the source nodes IDs.  
-    Source node #1:all  
-    #打印被移动的slot后，输入yes开始移动slot以及对应的数据.  
-    #Do you want to proceed with the proposed reshard plan (yes/no)? yes  
-    #结束  
-    ```
+node:新节点没有包含任何数据， 因为它没有包含任何slot。新加入的加点是一个主节点， 当集群需要将某个从节点升级为新的主节点时， 这个新节点不会被选中，同时新的主节点因为没有包含任何slot，不参加选举和failover。
 
+4) 为新节点分配slot
+
+```bash
+redis-trib.rb reshard 10.10.34.14:6386  
+#根据提示选择要迁移的slot数量(ps:这里选择500)  
+How many slots do you want to move (from 1 to 16384)? 500  
+#选择要接受这些slot的node-id  
+What is the receiving node ID? f51e26b5d5ff74f85341f06f28f125b7254e61bf  
+#选择slot来源:  
+#all表示从所有的master重新分配，  
+#或者数据要提取slot的master节点id,最后用done结束  
+Please enter all the source node IDs.  
+Type 'all' to use all the nodes as source nodes for the hash slots.  
+Type 'done' once you entered all the source nodes IDs.  
+Source node #1:all  
+#打印被移动的slot后，输入yes开始移动slot以及对应的数据.  
+#Do you want to proceed with the proposed reshard plan (yes/no)? yes  
+#结束  
+```
 
 #### 3) 添加新的slave节点
 
-1) 前三步操作同添加master一样
-2) 第四步:redis-cli连接上新节点shell,输入命令:cluster replicate 对应master的node-id
+1. 前三步操作同添加master一样
+2. 第四步:redis-cli连接上新节点shell,输入命令:cluster replicate 对应master的node-id
 
 ```bash
 cluster replicate 2b9ebcbd627ff0fd7a7bbcc5332fb09e72788835 
