@@ -33,21 +33,21 @@ https://raw.githubusercontent.com/antirez/redis/3.0/00-RELEASENOTES
 
 ![redis-cluster架构图](http://lumocheung.github.io/assets/img/ewcx2640qfhdp35lmrjsnyu9aoiv8kbgtz71.jpg)
  
-架构细节:  
-1) 所有的redis节点彼此互联(PING-PONG机制),内部使用二进制协议优化传输速度和带宽.
-2) 节点的fail是通过集群中超过半数的节点检测失效时才生效.
-3) 客户端与redis节点直连,不需要中间proxy层.客户端不需要连接集群所有节点,连接集群中任何一个可用节点即可
-4) redis-cluster把所有的物理节点映射到[0-16383]slot上,cluster 负责维护node<->slot<->key
+架构细节:  
+a) 所有的redis节点彼此互联(PING-PONG机制),内部使用二进制协议优化传输速度和带宽.   
+b) 节点的fail是通过集群中超过半数的节点检测失效时才生效.   
+c) 客户端与redis节点直连,不需要中间proxy层.客户端不需要连接集群所有节点,连接集群中任何一个可用节点即可   
+d) redis-cluster把所有的物理节点映射到[0-16383]slot上,cluster 负责维护node<->slot<->key   
 
 #### 2) redis-cluster选举:容错
  
 ![redis-cluster选举图](http://lumocheung.github.io/assets/img/ewcx2640qfhdp35lmrjsnyu9aoiv8kbgtz71.jpg)
  
-1) 领着选举过程是集群中所有master参与,如果半数以上master节点与master节点通信超过(cluster-node-timeout),认为当前master节点挂掉.   
-2) 什么时候整个集群不可用(cluster_state:fail)?   
-    a. 如果集群任意master挂掉,且当前master没有slave.集群进入fail状态,也可以理解成集群的slot映射[0-16383]不完成时进入fail状态.   
+a) 领着选举过程是集群中所有master参与,如果半数以上master节点与master节点通信超过(cluster-node-timeout),认为当前master节点挂掉.   
+b) 什么时候整个集群不可用(cluster_state:fail)?   
+    i. 如果集群任意master挂掉,且当前master没有slave.集群进入fail状态,也可以理解成集群的slot映射[0-16383]不完成时进入fail状态.   
     ps : redis-3.0.0.rc1加入cluster-require-full-coverage参数,默认关闭,打开集群兼容部分失败.   
-    b. 如果集群超过半数以上master挂掉，无论是否有slave集群进入fail状态.   
+    ii. 如果集群超过半数以上master挂掉，无论是否有slave集群进入fail状态.   
     ps:当集群不可用时,所有对集群的操作做都不可用，收到((error) CLUSTERDOWN The cluster is down)错误   
   
 ## 二:redis cluster的使用
@@ -263,21 +263,21 @@ redis-trib.rb check 10.10.34.14:6380
 
 #### 2) 添加新master节点
 
-1) 添加一个master节点:创建一个空节点（empty node），然后将某些slot移动到这个空节点上,这个过程目前需要人工干预
+添加一个master节点:创建一个空节点（empty node），然后将某些slot移动到这个空节点上,这个过程目前需要人工干预
 
-1) 根据端口生成配置文件(ps:establish_config.sh是我自己写的输出配置脚本)
+a) 根据端口生成配置文件(ps:establish_config.sh是我自己写的输出配置脚本)
 
 ```bash
 sh establish_config.sh 6386 > conf/redis-6386.conf  
 ```
 
-2) 启动节点
+b) 启动节点
 
 ```bash
 redis-server /opt/redis/conf/redis-6386.conf > /opt/redis/logs/redis-6386.log 2>&1 &
 ``` 
 
-3) 加入空节点到集群
+c) 加入空节点到集群
 add-node  将一个节点添加到集群里面， 第一个是新节点ip:port, 第二个是任意一个已存在节点ip:port
 
 ```bash
@@ -286,7 +286,7 @@ redis-trib.rb add-node 10.10.34.14:6386 10.10.34.14:6381
 
 node:新节点没有包含任何数据， 因为它没有包含任何slot。新加入的加点是一个主节点， 当集群需要将某个从节点升级为新的主节点时， 这个新节点不会被选中，同时新的主节点因为没有包含任何slot，不参加选举和failover。
 
-4) 为新节点分配slot
+d) 为新节点分配slot
 
 ```bash
 redis-trib.rb reshard 10.10.34.14:6386  
@@ -308,8 +308,8 @@ Source node #1:all
 
 #### 3) 添加新的slave节点
 
-1. 前三步操作同添加master一样
-2. 第四步:redis-cli连接上新节点shell,输入命令:cluster replicate 对应master的node-id
+a) 前三步操作同添加master一样   
+b) 第四步:redis-cli连接上新节点shell,输入命令:cluster replicate 对应master的node-id
 
 ```bash
 cluster replicate 2b9ebcbd627ff0fd7a7bbcc5332fb09e72788835 
@@ -336,7 +336,7 @@ redis-trib.rb del-node 10.10.34.14:7386 'c7ee2fca17cb79fe3c9822ced1d4f6c5e169e37
 
 #### 6)删除一个master节点
 
-1) 删除master节点之前首先要使用reshard移除master的全部slot,然后再删除当前节点(目前redis-trib.rb只能把被删除master的slot对应的数据迁移到一个节点上)
+a) 删除master节点之前首先要使用reshard移除master的全部slot,然后再删除当前节点(目前redis-trib.rb只能把被删除master的slot对应的数据迁移到一个节点上)
 
 ```bash
 #把10.10.34.14:6386当前master迁移到10.10.34.14:6380上  
@@ -354,7 +354,7 @@ Source node #2:done
 #Do you want to proceed with the proposed reshard plan (yes/no)? yes  
 ```
 
-2) 删除空master节点
+b) 删除空master节点
 
 
 ```bash
@@ -408,6 +408,6 @@ public void testBenchRedisSet() throws Exception {
 
 *参考文档:*
 
-1. http://redis.io/topics/cluster-spec   
-2. http://redis.io/topics/cluster-tutorial
+1. [http://redis.io/topics/cluster-spec](http://redis.io/topics/cluster-spec)   
+2. [http://redis.io/topics/cluster-tutorial](http://redis.io/topics/cluster-tutorial)
 3. [ruby安装](https://my.oschina.net/u/1449160/blog/260764)
