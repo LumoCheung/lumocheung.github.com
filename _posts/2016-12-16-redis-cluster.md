@@ -399,10 +399,10 @@ public void testBenchRedisSet() throws Exception {
 
 ### 2 redis-cluster客户端的一些坑.
 
-1) cluster环境下slave默认不接受任何读写操作，在slave执行readonly命令后，可执行读操作
-2) client端不支持多key操作(mget,mset等)，但当keys集合对应的slot相同时支持mget操作见:hash_tag
-3) 不支持多数据库，只有一个db，select 0。
-4) JedisCluster 没有针对byte[]的API，需要自己扩展(附件是我加的基于byte[]的BinaryJedisCluster  api)
+1) cluster环境下slave默认不接受任何读写操作，在slave执行readonly命令后，可执行读操作   
+2) client端不支持多key操作(mget,mset等)，但当keys集合对应的slot相同时支持mget操作见:hash_tag   
+3) 不支持多数据库，只有一个db，select 0。   
+4) JedisCluster 没有针对byte[]的API，需要自己扩展(附件是我加的基于byte[]的BinaryJedisCluster  api)   
 目前"Jedis-3.0.0-SNAPSHOT"已支持BinaryJedisCluster和基于hash_tag的mget操作.
 
 
