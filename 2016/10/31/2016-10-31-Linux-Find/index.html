@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="find一些常用参数的一些常用实例和一些具体用法和注意事项。 1．使用name选项文件名选项是find命令最常用的选项，要么单独使用该选项，要么和其他选项一起使用。  可以使用某种文件名模式来匹配文件，记住要用引号将文件名模式引起来。  不管当前路径是什么，如果想要在自己的根目录$HOME中查找文件名符合*.log的文">
+<meta property="og:type" content="article">
+<meta property="og:title" content="find 命令的参数详解">
+<meta property="og:url" content="http://lumocheung.github.io/2016/10/31/2016-10-31-Linux-Find/index.html">
+<meta property="og:site_name" content="LumoCheung的技术博客">
+<meta property="og:description" content="find一些常用参数的一些常用实例和一些具体用法和注意事项。 1．使用name选项文件名选项是find命令最常用的选项，要么单独使用该选项，要么和其他选项一起使用。  可以使用某种文件名模式来匹配文件，记住要用引号将文件名模式引起来。  不管当前路径是什么，如果想要在自己的根目录$HOME中查找文件名符合*.log的文件，使用~作为 ‘pathname’参数，波浪号~代表了你的$HOME目录。 1">
+<meta property="og:updated_time" content="2017-11-21T03:05:15.020Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="find 命令的参数详解">
+<meta name="twitter:description" content="find一些常用参数的一些常用实例和一些具体用法和注意事项。 1．使用name选项文件名选项是find命令最常用的选项，要么单独使用该选项，要么和其他选项一起使用。  可以使用某种文件名模式来匹配文件，记住要用引号将文件名模式引起来。  不管当前路径是什么，如果想要在自己的根目录$HOME中查找文件名符合*.log的文件，使用~作为 ‘pathname’参数，波浪号~代表了你的$HOME目录。 1">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://lumocheung.github.io/2016/10/31/2016-10-31-Linux-Find/"/>
+
+
+
+
+
+  <title>find 命令的参数详解 | LumoCheung的技术博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">LumoCheung的技术博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://lumocheung.github.io/2016/10/31/2016-10-31-Linux-Find/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LumoCheung">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LumoCheung的技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">find 命令的参数详解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-31T00:00:00+08:00">
+                2016-10-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>find一些常用参数的一些常用实例和一些具体用法和注意事项。</p>
+<h4 id="1．使用name选项"><a href="#1．使用name选项" class="headerlink" title="1．使用name选项"></a>1．使用name选项</h4><p>文件名选项是find命令最常用的选项，要么单独使用该选项，要么和其他选项一起使用。  可以使用某种文件名模式来匹配文件，记住要用引号将文件名模式引起来。  不管当前路径是什么，如果想要在自己的根目录$HOME中查找文件名符合*.log的文件，使用~作为 ‘pathname’参数，波浪号~代表了你的$HOME目录。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find ~ -name <span class="string">"*.log"</span> -<span class="built_in">print</span></span><br></pre></td></tr></table></figure>
+<p>想要在当前目录及子目录中查找所有的‘ *.log‘文件，可以用： </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -name <span class="string">"*.log"</span> -<span class="built_in">print</span></span><br></pre></td></tr></table></figure>
+<p>想要的当前目录及子目录中查找文件名以一个大写字母开头的文件，可以用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -name <span class="string">"[A-Z]*"</span> -<span class="built_in">print</span></span><br></pre></td></tr></table></figure>
+<p>想要在/etc目录中查找文件名以host开头的文件，可以用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /etc -name <span class="string">"host*"</span> -<span class="built_in">print</span></span><br></pre></td></tr></table></figure>
+<p>想要查找$HOME目录中的文件，可以用：  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find ~ -name <span class="string">"*"</span> -<span class="built_in">print</span> 或find . -<span class="built_in">print</span></span><br></pre></td></tr></table></figure>
+<p>要想让系统高负荷运行，就从根目录开始查找所有的文件。  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find / -name <span class="string">"*"</span> -<span class="built_in">print</span></span><br></pre></td></tr></table></figure>
+<p>如果想在当前目录查找文件名以一个个小写字母开头，最后是4到9加上.log结束的文件：<br>命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -name <span class="string">"[a-z]*[4-9].log"</span> -<span class="built_in">print</span></span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost <span class="built_in">test</span>]<span class="comment"># ll</span></span><br><span class="line">总计 316</span><br><span class="line">-rw-r--r-- 1 root root 302108 11-13 06:03 log2012.log</span><br><span class="line">-rw-r--r-- 1 root root     61 11-13 06:03 log2013.log</span><br><span class="line">-rw-r--r-- 1 root root      0 11-13 06:03 log2014.log</span><br><span class="line">-rw-r--r-- 1 root root      0 11-13 06:06 log2015.log</span><br><span class="line">drwxr-xr-x 6 root root   4096 10-27 01:58 scf</span><br><span class="line">drwxrwxr-x 2 root root   4096 11-13 06:08 test3</span><br><span class="line">drwxrwxr-x 2 root root   4096 11-13 05:50 test4</span><br><span class="line">[root@localhost <span class="built_in">test</span>]<span class="comment"># find . -name "[a-z]*[4-9].log" -print</span></span><br><span class="line">./log2014.log</span><br><span class="line">./log2015.log</span><br><span class="line">./test4/log2014.log</span><br><span class="line">[root@localhost <span class="built_in">test</span>]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+<h4 id="2．用perm选项"><a href="#2．用perm选项" class="headerlink" title="2．用perm选项"></a>2．用perm选项</h4><p>按照文件权限模式用-perm选项,按文件权限模式来查找文件的话。最好使用八进制的权限表示法。<br>如在当前目录下查找文件权限位为755的文件，即文件属主可以读、写、执行，其他用户可以读、执行的文件，可以用：  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost <span class="built_in">test</span>]<span class="comment"># find . -perm 755 -print</span></span><br><span class="line">.</span><br><span class="line">./scf</span><br><span class="line">./scf/lib</span><br><span class="line">./scf/service</span><br><span class="line">./scf/service/deploy</span><br><span class="line">./scf/service/deploy/product</span><br><span class="line">./scf/service/deploy/info</span><br><span class="line">./scf/doc</span><br><span class="line">./scf/bin</span><br><span class="line">[root@localhost <span class="built_in">test</span>]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+<p>还有一种表达方法：在八进制数字前面要加一个横杠-，表示都匹配，如-007就相当于777，-005相当于555,<br>命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -perm -005</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost <span class="built_in">test</span>]<span class="comment"># ll</span></span><br><span class="line">总计 316</span><br><span class="line">-rw-r--r-- 1 root root 302108 11-13 06:03 log2012.log</span><br><span class="line">-rw-r--r-- 1 root root     61 11-13 06:03 log2013.log</span><br><span class="line">-rw-r--r-- 1 root root      0 11-13 06:03 log2014.log</span><br><span class="line">-rw-r--r-- 1 root root      0 11-13 06:06 log2015.log</span><br><span class="line">drwxr-xr-x 6 root root   4096 10-27 01:58 scf</span><br><span class="line">drwxrwxr-x 2 root root   4096 11-13 06:08 test3</span><br><span class="line">drwxrwxr-x 2 root root   4096 11-13 05:50 test4</span><br><span class="line">[root@localhost <span class="built_in">test</span>]<span class="comment"># find . -perm -005</span></span><br><span class="line">.</span><br><span class="line">./test4</span><br><span class="line">./scf</span><br><span class="line">./scf/lib</span><br><span class="line">./scf/service</span><br><span class="line">./scf/service/deploy</span><br><span class="line">./scf/service/deploy/product</span><br><span class="line">./scf/service/deploy/info</span><br><span class="line">./scf/doc</span><br><span class="line">./scf/bin</span><br><span class="line">./test3</span><br><span class="line">[root@localhost <span class="built_in">test</span>]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+<h4 id="3．忽略某个目录"><a href="#3．忽略某个目录" class="headerlink" title="3．忽略某个目录"></a>3．忽略某个目录</h4><p>如果在查找文件时希望忽略某个目录，因为你知道那个目录中没有你所要查找的文件，那么可以使用-prune选项来指出需要忽略的目录。在使用-prune选项时要当心，因为如果你同时使用了-depth选项，那么-prune选项就会被find命令忽略。如果希望在test目录下查找文件，但不希望在test/test3目录下查找，可以用命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find <span class="built_in">test</span> -path <span class="string">"test/test3"</span> -prune -o -<span class="built_in">print</span></span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost soft]<span class="comment"># find test -path "test/test3" -prune -o -print</span></span><br><span class="line"><span class="built_in">test</span></span><br><span class="line"><span class="built_in">test</span>/log2014.log</span><br><span class="line"><span class="built_in">test</span>/log2015.log</span><br><span class="line"><span class="built_in">test</span>/test4</span><br><span class="line"><span class="built_in">test</span>/test4/log2014.log</span><br><span class="line"><span class="built_in">test</span>/test4/log2013.log</span><br><span class="line"><span class="built_in">test</span>/test4/log2012.log</span><br><span class="line"><span class="built_in">test</span>/scf</span><br><span class="line"><span class="built_in">test</span>/scf/lib</span><br><span class="line"><span class="built_in">test</span>/scf/service</span><br><span class="line"><span class="built_in">test</span>/scf/service/deploy</span><br><span class="line"><span class="built_in">test</span>/scf/service/deploy/product</span><br><span class="line"><span class="built_in">test</span>/scf/service/deploy/info</span><br><span class="line"><span class="built_in">test</span>/scf/doc</span><br><span class="line"><span class="built_in">test</span>/scf/bin</span><br><span class="line"><span class="built_in">test</span>/log2013.log</span><br><span class="line"><span class="built_in">test</span>/log2012.log</span><br><span class="line">[root@localhost soft]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+<h4 id="4．使用find查找文件的时候怎么避开某个文件目录"><a href="#4．使用find查找文件的时候怎么避开某个文件目录" class="headerlink" title="4．使用find查找文件的时候怎么避开某个文件目录"></a>4．使用find查找文件的时候怎么避开某个文件目录</h4><h5 id="实例1：在test-目录下查找不在test4子目录之内的所有文件"><a href="#实例1：在test-目录下查找不在test4子目录之内的所有文件" class="headerlink" title="实例1：在test 目录下查找不在test4子目录之内的所有文件"></a>实例1：在test 目录下查找不在test4子目录之内的所有文件</h5><p>命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find <span class="built_in">test</span> -path <span class="string">"test/test4"</span> -prune -o -<span class="built_in">print</span></span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost soft]<span class="comment"># find test</span></span><br><span class="line"><span class="built_in">test</span></span><br><span class="line"><span class="built_in">test</span>/log2014.log</span><br><span class="line"><span class="built_in">test</span>/log2015.log</span><br><span class="line"><span class="built_in">test</span>/test4</span><br><span class="line"><span class="built_in">test</span>/test4/log2014.log</span><br><span class="line"><span class="built_in">test</span>/test4/log2013.log</span><br><span class="line"><span class="built_in">test</span>/test4/log2012.log</span><br><span class="line"><span class="built_in">test</span>/scf</span><br><span class="line"><span class="built_in">test</span>/scf/lib</span><br><span class="line"><span class="built_in">test</span>/scf/service</span><br><span class="line"><span class="built_in">test</span>/scf/service/deploy</span><br><span class="line"><span class="built_in">test</span>/scf/service/deploy/product</span><br><span class="line"><span class="built_in">test</span>/scf/service/deploy/info</span><br><span class="line"><span class="built_in">test</span>/scf/doc</span><br><span class="line"><span class="built_in">test</span>/scf/bin</span><br><span class="line"><span class="built_in">test</span>/log2013.log</span><br><span class="line"><span class="built_in">test</span>/log2012.log</span><br><span class="line"><span class="built_in">test</span>/test3</span><br><span class="line">[root@localhost soft]<span class="comment"># find test -path "test/test4" -prune -o -print</span></span><br><span class="line"><span class="built_in">test</span></span><br><span class="line"><span class="built_in">test</span>/log2014.log</span><br><span class="line"><span class="built_in">test</span>/log2015.log</span><br><span class="line"><span class="built_in">test</span>/scf</span><br><span class="line"><span class="built_in">test</span>/scf/lib</span><br><span class="line"><span class="built_in">test</span>/scf/service</span><br><span class="line"><span class="built_in">test</span>/scf/service/deploy</span><br><span class="line"><span class="built_in">test</span>/scf/service/deploy/product</span><br><span class="line"><span class="built_in">test</span>/scf/service/deploy/info</span><br><span class="line"><span class="built_in">test</span>/scf/doc</span><br><span class="line"><span class="built_in">test</span>/scf/bin</span><br><span class="line"><span class="built_in">test</span>/log2013.log</span><br><span class="line"><span class="built_in">test</span>/log2012.log</span><br><span class="line"><span class="built_in">test</span>/test3</span><br><span class="line">[root@localhost soft]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+<p>说明：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find [-path ..] [expression]</span><br></pre></td></tr></table></figure>
+<p>在路径列表的后面的是表达式 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-path <span class="string">"test"</span> -prune -o -<span class="built_in">print</span> 是 -path <span class="string">"test"</span> -a -prune -o -<span class="built_in">print</span> 的简写表达式按顺序求值, -a 和 -o 都是短路求值，与 shell 的 &amp;&amp; 和 || 类似如果 </span><br><span class="line">-path <span class="string">"test"</span> 为真，则求值 -prune , -prune 返回真，与逻辑表达式为真；否则不求值 -prune，与逻辑表达式为假。如果 -path <span class="string">"test"</span> -a -prune 为假，则求值 -<span class="built_in">print</span> ，-<span class="built_in">print</span>返回真，或逻辑表达式为真；否则不求值 -<span class="built_in">print</span>，或逻辑表达式为真。 </span><br><span class="line">这个表达式组合特例可以用伪码写为:</span><br><span class="line"><span class="keyword">if</span> -path <span class="string">"test"</span> <span class="keyword">then</span>  </span><br><span class="line">  -prune  </span><br><span class="line"><span class="keyword">else</span>  </span><br><span class="line">  -<span class="built_in">print</span></span><br></pre></td></tr></table></figure>
+<h5 id="实例2：避开多个文件夹"><a href="#实例2：避开多个文件夹" class="headerlink" title="实例2：避开多个文件夹"></a>实例2：避开多个文件夹</h5><p>命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find <span class="built_in">test</span> \( -path <span class="built_in">test</span>/test4 -o -path <span class="built_in">test</span>/test3 \) -prune -o -<span class="built_in">print</span></span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost soft]<span class="comment"># find test \( -path test/test4 -o -path test/test3 \) -prune -o -print</span></span><br><span class="line"><span class="built_in">test</span></span><br><span class="line"><span class="built_in">test</span>/log2014.log</span><br><span class="line"><span class="built_in">test</span>/log2015.log</span><br><span class="line"><span class="built_in">test</span>/scf</span><br><span class="line"><span class="built_in">test</span>/scf/lib</span><br><span class="line"><span class="built_in">test</span>/scf/service</span><br><span class="line"><span class="built_in">test</span>/scf/service/deploy</span><br><span class="line"><span class="built_in">test</span>/scf/service/deploy/product</span><br><span class="line"><span class="built_in">test</span>/scf/service/deploy/info</span><br><span class="line"><span class="built_in">test</span>/scf/doc</span><br><span class="line"><span class="built_in">test</span>/scf/bin</span><br><span class="line"><span class="built_in">test</span>/log2013.log</span><br><span class="line"><span class="built_in">test</span>/log2012.log</span><br><span class="line">[root@localhost soft]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+<p>说明：<br>圆括号表示表达式的结合。  \ 表示引用，即指示 shell 不对后面的字符作特殊解释，而留给 find 命令去解释其意义。  </p>
+<h5 id="实例3：查找某一确定文件，-name等选项加在-o-之后"><a href="#实例3：查找某一确定文件，-name等选项加在-o-之后" class="headerlink" title="实例3：查找某一确定文件，-name等选项加在-o 之后"></a>实例3：查找某一确定文件，-name等选项加在-o 之后</h5><p>命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find <span class="built_in">test</span> \(-path <span class="built_in">test</span>/test4 -o -path <span class="built_in">test</span>/test3 \) -prune -o -name <span class="string">"*.log"</span> -<span class="built_in">print</span></span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost soft]<span class="comment"># find test \( -path test/test4 -o -path test/test3 \) -prune -o -name "*.log" -print</span></span><br><span class="line"><span class="built_in">test</span>/log2014.log</span><br><span class="line"><span class="built_in">test</span>/log2015.log</span><br><span class="line"><span class="built_in">test</span>/log2013.log</span><br><span class="line"><span class="built_in">test</span>/log2012.log</span><br><span class="line">[root@localhost soft]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+<h4 id="5．使用user和nouser选项"><a href="#5．使用user和nouser选项" class="headerlink" title="5．使用user和nouser选项"></a>5．使用user和nouser选项</h4><p>按文件属主查找文件：</p>
+<h5 id="实例1：在-HOME目录中查找文件属主为peida的文件"><a href="#实例1：在-HOME目录中查找文件属主为peida的文件" class="headerlink" title="实例1：在$HOME目录中查找文件属主为peida的文件"></a>实例1：在$HOME目录中查找文件属主为peida的文件</h5><p>命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find ~ -user peida -<span class="built_in">print</span></span><br></pre></td></tr></table></figure>
+<h5 id="实例2：在-etc目录下查找文件属主为peida的文件"><a href="#实例2：在-etc目录下查找文件属主为peida的文件" class="headerlink" title="实例2：在/etc目录下查找文件属主为peida的文件:"></a>实例2：在/etc目录下查找文件属主为peida的文件:</h5><p>命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /etc -user peida -<span class="built_in">print</span></span><br></pre></td></tr></table></figure>
+<h5 id="实例3：为了查找属主帐户已经被删除的文件，可以使用-nouser选项。在-home目录下查找所有的这类文件"><a href="#实例3：为了查找属主帐户已经被删除的文件，可以使用-nouser选项。在-home目录下查找所有的这类文件" class="headerlink" title="实例3：为了查找属主帐户已经被删除的文件，可以使用-nouser选项。在/home目录下查找所有的这类文件"></a>实例3：为了查找属主帐户已经被删除的文件，可以使用-nouser选项。在/home目录下查找所有的这类文件</h5><p>命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /home -nouser -<span class="built_in">print</span></span><br></pre></td></tr></table></figure>
+<p>说明：<br>这样就能够找到那些属主在/etc/passwd文件中没有有效帐户的文件。在使用-nouser选项时，不必给出用户名； find命令能够为你完成相应的工作。</p>
+<h4 id="6．使用group和nogroup选项"><a href="#6．使用group和nogroup选项" class="headerlink" title="6．使用group和nogroup选项"></a>6．使用group和nogroup选项</h4><p>就像user和nouser选项一样，针对文件所属于的用户组， find命令也具有同样的选项，为了在/apps目录下查找属于gem用户组的文件，可以用：  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /apps -group gem -<span class="built_in">print</span></span><br></pre></td></tr></table></figure>
+<p>要查找没有有效所属用户组的所有文件，可以使用nogroup选项。下面的find命令从文件系统的根目录处查找这样的文件:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find / -nogroup-print</span><br></pre></td></tr></table></figure>
+<h4 id="7．按照更改时间或访问时间等查找文件"><a href="#7．按照更改时间或访问时间等查找文件" class="headerlink" title="7．按照更改时间或访问时间等查找文件"></a>7．按照更改时间或访问时间等查找文件</h4><p>如果希望按照更改时间来查找文件，可以使用mtime,atime或ctime选项。如果系统突然没有可用空间了，很有可能某一个文件的长度在此期间增长迅速，这时就可以用mtime选项来查找这样的文件。<br>用减号-来限定更改时间在距今n日以内的文件，而用加号+来限定更改时间在距今n日以前的文件。<br>希望在系统根目录下查找更改时间在5日以内的文件，可以用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find / -mtime -5 -<span class="built_in">print</span></span><br></pre></td></tr></table></figure>
+<p>为了在/var/adm目录下查找更改时间在3日以前的文件，可以用:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /var/adm -mtime +3 -<span class="built_in">print</span></span><br></pre></td></tr></table></figure>
+<h4 id="8．查找比某个文件新或旧的文件"><a href="#8．查找比某个文件新或旧的文件" class="headerlink" title="8．查找比某个文件新或旧的文件"></a>8．查找比某个文件新或旧的文件</h4><p>如果希望查找更改时间比某个文件新但比另一个文件旧的所有文件，可以使用-newer选项。<br>它的一般形式为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">newest_file_name ! oldest_file_name</span><br></pre></td></tr></table></figure>
+<p>其中，！是逻辑非符号。  </p>
+<h5 id="实例1：查找更改时间比文件log2012-log新但比文件log2017-log旧的文件"><a href="#实例1：查找更改时间比文件log2012-log新但比文件log2017-log旧的文件" class="headerlink" title="实例1：查找更改时间比文件log2012.log新但比文件log2017.log旧的文件"></a>实例1：查找更改时间比文件log2012.log新但比文件log2017.log旧的文件</h5><p>命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find -newer log2012.log ! -newer log2017.log</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost <span class="built_in">test</span>]<span class="comment"># ll</span></span><br><span class="line">总计 316</span><br><span class="line">-rw-r--r-- 1 root root 302108 11-13 06:03 log2012.log</span><br><span class="line">-rw-r--r-- 1 root root     61 11-13 06:03 log2013.log</span><br><span class="line">-rw-r--r-- 1 root root      0 11-13 06:03 log2014.log</span><br><span class="line">-rw-r--r-- 1 root root      0 11-13 06:06 log2015.log</span><br><span class="line">-rw-r--r-- 1 root root      0 11-16 14:41 log2016.log</span><br><span class="line">-rw-r--r-- 1 root root      0 11-16 14:43 log2017.log</span><br><span class="line">drwxr-xr-x 6 root root   4096 10-27 01:58 scf</span><br><span class="line">drwxrwxr-x 2 root root   4096 11-13 06:08 test3</span><br><span class="line">drwxrwxr-x 2 root root   4096 11-13 05:50 test4</span><br><span class="line">[root@localhost <span class="built_in">test</span>]<span class="comment"># find -newer log2012.log ! -newer log2017.log</span></span><br><span class="line">.</span><br><span class="line">./log2015.log</span><br><span class="line">./log2017.log</span><br><span class="line">./log2016.log</span><br><span class="line">./test3</span><br><span class="line">[root@localhost <span class="built_in">test</span>]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+<h5 id="实例2：查找更改时间在比log2012-log文件新的文件"><a href="#实例2：查找更改时间在比log2012-log文件新的文件" class="headerlink" title="实例2：查找更改时间在比log2012.log文件新的文件"></a>实例2：查找更改时间在比log2012.log文件新的文件</h5><p>命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -newer log2012.log -<span class="built_in">print</span></span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost <span class="built_in">test</span>]<span class="comment"># find -newer log2012.log</span></span><br><span class="line">.</span><br><span class="line">./log2015.log</span><br><span class="line">./log2017.log</span><br><span class="line">./log2016.log</span><br><span class="line">./test3</span><br><span class="line">[root@localhost <span class="built_in">test</span>]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+<h4 id="9．使用type选项"><a href="#9．使用type选项" class="headerlink" title="9．使用type选项"></a>9．使用type选项</h4><h5 id="实例1：在-etc目录下查找所有的目录"><a href="#实例1：在-etc目录下查找所有的目录" class="headerlink" title="实例1：在/etc目录下查找所有的目录"></a>实例1：在/etc目录下查找所有的目录</h5><p>命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /etc -<span class="built_in">type</span> d -<span class="built_in">print</span></span><br></pre></td></tr></table></figure>
+<h5 id="实例2：在当前目录下查找除目录以外的所有类型的文件"><a href="#实例2：在当前目录下查找除目录以外的所有类型的文件" class="headerlink" title="实例2：在当前目录下查找除目录以外的所有类型的文件"></a>实例2：在当前目录下查找除目录以外的所有类型的文件</h5><p>命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . ! -<span class="built_in">type</span> d -<span class="built_in">print</span></span><br></pre></td></tr></table></figure>
+<h5 id="实例3：在-etc目录下查找所有的符号链接文件"><a href="#实例3：在-etc目录下查找所有的符号链接文件" class="headerlink" title="实例3：在/etc目录下查找所有的符号链接文件"></a>实例3：在/etc目录下查找所有的符号链接文件</h5><p>命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /etc -<span class="built_in">type</span> l -<span class="built_in">print</span></span><br></pre></td></tr></table></figure>
+<h4 id="10．使用size选项"><a href="#10．使用size选项" class="headerlink" title="10．使用size选项"></a>10．使用size选项</h4><p>可以按照文件长度来查找文件，这里所指的文件长度既可以用块（block）来计量，也可以用字节来计量。以字节计量文件长度的表达形式为N c；以块计量文件长度只用数字表示即可。<br>在按照文件长度查找文件时，一般使用这种以字节表示的文件长度，在查看文件系统的大小，因为这时使用块来计量更容易转换。  </p>
+<h5 id="实例1：在当前目录下查找文件长度大于1-M字节的文件"><a href="#实例1：在当前目录下查找文件长度大于1-M字节的文件" class="headerlink" title="实例1：在当前目录下查找文件长度大于1 M字节的文件"></a>实例1：在当前目录下查找文件长度大于1 M字节的文件</h5><p>命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -size +1000000c -<span class="built_in">print</span></span><br></pre></td></tr></table></figure>
+<h5 id="实例2：在-home-apache目录下查找文件长度恰好为100字节的文件"><a href="#实例2：在-home-apache目录下查找文件长度恰好为100字节的文件" class="headerlink" title="实例2：在/home/apache目录下查找文件长度恰好为100字节的文件"></a>实例2：在/home/apache目录下查找文件长度恰好为100字节的文件</h5><p>命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /home/apache -size 100c -<span class="built_in">print</span></span><br></pre></td></tr></table></figure>
+<h5 id="实例3：在当前目录下查找长度超过10块的文件（一块等于512字节）"><a href="#实例3：在当前目录下查找长度超过10块的文件（一块等于512字节）" class="headerlink" title="实例3：在当前目录下查找长度超过10块的文件（一块等于512字节）"></a>实例3：在当前目录下查找长度超过10块的文件（一块等于512字节）</h5><p>命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -size +10 -<span class="built_in">print</span></span><br></pre></td></tr></table></figure>
+<h4 id="11．使用depth选项"><a href="#11．使用depth选项" class="headerlink" title="11．使用depth选项"></a>11．使用depth选项</h4><p>在使用find命令时，可能希望先匹配所有的文件，再在子目录中查找。使用depth选项就可以使find命令这样做。这样做的一个原因就是，当在使用find命令向磁带上备份文件系统时，希望首先备份所有的文件，其次再备份子目录中的文件。  </p>
+<h5 id="实例1：find命令从文件系统的根目录开始，查找一个名为CON-FILE的文件"><a href="#实例1：find命令从文件系统的根目录开始，查找一个名为CON-FILE的文件" class="headerlink" title="实例1：find命令从文件系统的根目录开始，查找一个名为CON.FILE的文件"></a>实例1：find命令从文件系统的根目录开始，查找一个名为CON.FILE的文件</h5><p>命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find / -name <span class="string">"CON.FILE"</span> -depth -<span class="built_in">print</span></span><br></pre></td></tr></table></figure>
+<p>说明：<br>它将首先匹配所有的文件然后再进入子目录中查找</p>
+<h4 id="12．使用mount选项"><a href="#12．使用mount选项" class="headerlink" title="12．使用mount选项"></a>12．使用mount选项</h4><p>在当前的文件系统中查找文件（不进入其他文件系统），可以使用find命令的mount选项。</p>
+<h5 id="实例1：从当前目录开始查找位于本文件系统中文件名以XC结尾的文件"><a href="#实例1：从当前目录开始查找位于本文件系统中文件名以XC结尾的文件" class="headerlink" title="实例1：从当前目录开始查找位于本文件系统中文件名以XC结尾的文件"></a>实例1：从当前目录开始查找位于本文件系统中文件名以XC结尾的文件</h5><p>命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -name <span class="string">"*.XC"</span> -mount -<span class="built_in">print</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    LumoCheung
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://lumocheung.github.io/2016/10/31/2016-10-31-Linux-Find/" title="find 命令的参数详解">http://lumocheung.github.io/2016/10/31/2016-10-31-Linux-Find/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/14/2016-10-14-Sudo-Linux/" rel="next" title="sudo 命令小解">
+                <i class="fa fa-chevron-left"></i> sudo 命令小解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/16/2016-12-16-redis-cluster/" rel="prev" title="redis-cluster研究和使用">
+                redis-cluster研究和使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+    <div class="comments" id="comments">
+      <div id="commenthub_thread"></div>
+    </div>
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">LumoCheung</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1．使用name选项"><span class="nav-number">1.</span> <span class="nav-text">1．使用name选项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2．用perm选项"><span class="nav-number">2.</span> <span class="nav-text">2．用perm选项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3．忽略某个目录"><span class="nav-number">3.</span> <span class="nav-text">3．忽略某个目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4．使用find查找文件的时候怎么避开某个文件目录"><span class="nav-number">4.</span> <span class="nav-text">4．使用find查找文件的时候怎么避开某个文件目录</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#实例1：在test-目录下查找不在test4子目录之内的所有文件"><span class="nav-number">4.1.</span> <span class="nav-text">实例1：在test 目录下查找不在test4子目录之内的所有文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#实例2：避开多个文件夹"><span class="nav-number">4.2.</span> <span class="nav-text">实例2：避开多个文件夹</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#实例3：查找某一确定文件，-name等选项加在-o-之后"><span class="nav-number">4.3.</span> <span class="nav-text">实例3：查找某一确定文件，-name等选项加在-o 之后</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5．使用user和nouser选项"><span class="nav-number">5.</span> <span class="nav-text">5．使用user和nouser选项</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#实例1：在-HOME目录中查找文件属主为peida的文件"><span class="nav-number">5.1.</span> <span class="nav-text">实例1：在$HOME目录中查找文件属主为peida的文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#实例2：在-etc目录下查找文件属主为peida的文件"><span class="nav-number">5.2.</span> <span class="nav-text">实例2：在/etc目录下查找文件属主为peida的文件:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#实例3：为了查找属主帐户已经被删除的文件，可以使用-nouser选项。在-home目录下查找所有的这类文件"><span class="nav-number">5.3.</span> <span class="nav-text">实例3：为了查找属主帐户已经被删除的文件，可以使用-nouser选项。在/home目录下查找所有的这类文件</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6．使用group和nogroup选项"><span class="nav-number">6.</span> <span class="nav-text">6．使用group和nogroup选项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7．按照更改时间或访问时间等查找文件"><span class="nav-number">7.</span> <span class="nav-text">7．按照更改时间或访问时间等查找文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8．查找比某个文件新或旧的文件"><span class="nav-number">8.</span> <span class="nav-text">8．查找比某个文件新或旧的文件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#实例1：查找更改时间比文件log2012-log新但比文件log2017-log旧的文件"><span class="nav-number">8.1.</span> <span class="nav-text">实例1：查找更改时间比文件log2012.log新但比文件log2017.log旧的文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#实例2：查找更改时间在比log2012-log文件新的文件"><span class="nav-number">8.2.</span> <span class="nav-text">实例2：查找更改时间在比log2012.log文件新的文件</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9．使用type选项"><span class="nav-number">9.</span> <span class="nav-text">9．使用type选项</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#实例1：在-etc目录下查找所有的目录"><span class="nav-number">9.1.</span> <span class="nav-text">实例1：在/etc目录下查找所有的目录</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#实例2：在当前目录下查找除目录以外的所有类型的文件"><span class="nav-number">9.2.</span> <span class="nav-text">实例2：在当前目录下查找除目录以外的所有类型的文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#实例3：在-etc目录下查找所有的符号链接文件"><span class="nav-number">9.3.</span> <span class="nav-text">实例3：在/etc目录下查找所有的符号链接文件</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10．使用size选项"><span class="nav-number">10.</span> <span class="nav-text">10．使用size选项</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#实例1：在当前目录下查找文件长度大于1-M字节的文件"><span class="nav-number">10.1.</span> <span class="nav-text">实例1：在当前目录下查找文件长度大于1 M字节的文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#实例2：在-home-apache目录下查找文件长度恰好为100字节的文件"><span class="nav-number">10.2.</span> <span class="nav-text">实例2：在/home/apache目录下查找文件长度恰好为100字节的文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#实例3：在当前目录下查找长度超过10块的文件（一块等于512字节）"><span class="nav-number">10.3.</span> <span class="nav-text">实例3：在当前目录下查找长度超过10块的文件（一块等于512字节）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11．使用depth选项"><span class="nav-number">11.</span> <span class="nav-text">11．使用depth选项</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#实例1：find命令从文件系统的根目录开始，查找一个名为CON-FILE的文件"><span class="nav-number">11.1.</span> <span class="nav-text">实例1：find命令从文件系统的根目录开始，查找一个名为CON.FILE的文件</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12．使用mount选项"><span class="nav-number">12.</span> <span class="nav-text">12．使用mount选项</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#实例1：从当前目录开始查找位于本文件系统中文件名以XC结尾的文件"><span class="nav-number">12.1.</span> <span class="nav-text">实例1：从当前目录开始查找位于本文件系统中文件名以XC结尾的文件</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LumoCheung</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+  
+      <script type="text/javascript">
+        var commenthub_id = '33658114';
+        var commenthub_website = 'http://dailycast.github.io';
+        var commenthub_identifier = '2016/10/31/2016-10-31-Linux-Find/';
+        var commenthub_url = 'http://lumocheung.github.io/2016/10/31/2016-10-31-Linux-Find/';
+        var commenthub_title = 'find 命令的参数详解';
+        var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = 'https://commenthub.herokuapp.com/js/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      </script>
+  
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
